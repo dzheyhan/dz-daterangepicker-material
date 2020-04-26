@@ -11,6 +11,13 @@ This [React](https://reactjs.org/) date range picker component creates a dropdow
 ```bash
 npm install --save dz-daterangepicker-material
 ```
+
+## Demo
+
+Minimal demo page is included in sample directory.
+
+[Online demo](https://codesandbox.io/s/sad-pine-17zyi) is also available!
+
 ## Day, Year, Month view selection
 ![](./img/screen.png)
 
