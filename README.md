@@ -1,7 +1,5 @@
 # dz-daterangepicker-material
 
-> Made with create-react-library
-
 [![NPM](https://img.shields.io/npm/v/test-rearct-lib-4.svg)](https://www.npmjs.com/package/dz-daterangepicker-material) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Dz Daterangepicker [Material](https://material.io/design/introduction/).
