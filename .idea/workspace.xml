@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4587e831-cc2d-40f9-b8f8-39e7aa2346f1" name="Default Changelist" comment="" />
+    <list default="true" id="4587e831-cc2d-40f9-b8f8-39e7aa2346f1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,7 +112,7 @@
       <workItem from="1587217871862" duration="6738000" />
       <workItem from="1587810939688" duration="17104000" />
       <workItem from="1587831346959" duration="12028000" />
-      <workItem from="1587888211013" duration="15371000" />
+      <workItem from="1587888211013" duration="17162000" />
     </task>
     <servers />
   </component>
@@ -145,9 +148,9 @@
       <screen x="2560" y="0" width="1920" height="1080" />
     </state>
     <state width="1797" height="142" key="GridCell.Tab.0.right/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1587916460382" />
-    <state x="3084" y="264" width="828" height="640" key="find.popup" timestamp="1587895871292">
+    <state x="3084" y="264" width="828" height="640" key="find.popup" timestamp="1587931822145">
       <screen x="2560" y="0" width="1920" height="1080" />
     </state>
-    <state x="3084" y="264" width="828" height="640" key="find.popup/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1587895871292" />
+    <state x="3084" y="264" width="828" height="640" key="find.popup/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1587931822145" />
   </component>
 </project>
