@@ -1,43 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4587e831-cc2d-40f9-b8f8-39e7aa2346f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/test-rearct-lib-4.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/screen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Content.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Daterangepicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DzPopover.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DzTextField.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/calendar/Day.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/calendar/Month.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/calendar/Year.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/header/Header.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/header/TableHeader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/style/header.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/style/main.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/style/table.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/style/variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/example/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/example/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/example/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles.module.css" beforeDir="false" />
-    </list>
+    <list default="true" id="4587e831-cc2d-40f9-b8f8-39e7aa2346f1" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -145,7 +109,7 @@
       <workItem from="1587217871862" duration="6738000" />
       <workItem from="1587810939688" duration="17104000" />
       <workItem from="1587831346959" duration="12028000" />
-      <workItem from="1587888211013" duration="13963000" />
+      <workItem from="1587888211013" duration="14284000" />
     </task>
     <servers />
   </component>

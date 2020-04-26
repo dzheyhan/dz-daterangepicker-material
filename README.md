@@ -51,11 +51,11 @@ function Example(){
 ```
 
 ## Donation
-:beer: :beer: :beer:
+:beer: :beer: :beer: :beer: :beer: :beer:
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4H8MQCF7T74P8&source=url)
 
-:beer: :beer: :beer:
+:beer: :beer: :beer: :beer: :beer: :beer:
 
 ## License
 
