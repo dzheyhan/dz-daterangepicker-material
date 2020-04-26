@@ -44,9 +44,18 @@ function Example(){
      />
     )
 }
-
-
 ```
+
+### Available props
+|prop|description|default|type|
+|--|----|--|----|
+|onChange|Triggered when a date or range is selected. returns value||({start, end}) => this.setState({start, end})|
+|startDate||null|Moment or Date|
+|endDate||null|Moment or Date|
+|startWeek|The first day of the week|"monday"|"saturday"|"sunday" |String|
+|locale||'en'|String|
+|TODO|TODO|TODO|TODO|
+
 
 ## Donation :beer: :beer: :beer:
 
