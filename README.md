@@ -22,7 +22,7 @@ npm install --save dz-daterangepicker-material
 import React, { Component } from 'react'
 
 import DateRangePicker from "dz-daterangepicker-material";
-import "test-rearct-lib-4/src/style/main.scss";
+import "dz-daterangepicker-material/src/style/main.scss";
 
 function Example(){
     const [date, setDate] = React.useState({
