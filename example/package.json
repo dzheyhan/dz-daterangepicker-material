@@ -1,13 +1,14 @@
 {
-  "name": "test-rearct-lib-4-example",
-  "homepage": "https://Dzheyhan-tgmg.github.io/test-rearct-lib-4",
+  "name": "test-dz-daterangepicker-material",
+  "homepage": "dz-daterangepicker-material",
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "dz-daterangepicker-material": "file:..",
     "react": "file:../node_modules/react",
     "react-dom": "file:../node_modules/react-dom",
     "react-scripts": "file:../node_modules/react-scripts",
-    "test-rearct-lib-4": "file:.."
+    "node-sass": "file:../node_modules/node-sass"
   },
   "scripts": {
     "start": "node ../node_modules/react-scripts/bin/react-scripts.js start",

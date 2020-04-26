@@ -1,33 +1,46 @@
 {
-  "name": "test-rearct-lib-4",
+  "name": "dz-daterangepicker-material",
   "version": "1.0.0",
-  "description": "Made with create-react-library",
-  "author": "Dzheyhan-tgmg",
+  "description": "React date range picker (with material design theme)",
+  "author": "Dzheyhan Ahmedov",
   "license": "MIT",
-  "repository": "Dzheyhan-tgmg/test-rearct-lib-4",
+  "repository": "https://github.com/dzheyhan/dz-daterangepicker-material",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
   "engines": {
     "node": ">=10"
   },
+  "keywords": [
+    "react",
+    "daterangepicker",
+    "daterange",
+    "material",
+    "material-ui",
+    "material design",
+    "dz-daterangepicker",
+    "date",
+    "moment",
+    "dz",
+    "picker"
+  ],
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
     "prepublish": "run-s build",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
-    "test:lint": "eslint .",
+    "test:lint": "eslint  .",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "format": "prettier --write src/**/*.{js,json,css,scss}"
   },
   "peerDependencies": {
     "react": "^16.0.0"
   },
   "devDependencies": {
-    "microbundle-crl": "^0.13.8",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
@@ -41,11 +54,21 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
     "gh-pages": "^2.2.0",
+    "microbundle-crl": "^0.13.8",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.9.11",
+    "@material-ui/icons": "^4.9.1",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.28",
+    "node-sass": "^4.13.1",
+    "prop-types": "^15.7.2",
+    "typescript": "^3.8.3"
   },
   "files": [
     "dist"

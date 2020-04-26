@@ -1,0 +1,110 @@
+.dz-calendar__table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  &__header {
+    color: rgba(0, 0, 0, 0.38);
+
+    th {
+      padding: 0 0 8px;
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+    &__divider {
+      position: relative;
+      height: 1px;
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -8px;
+        right: -8px;
+        height: 1px;
+        background: rgba(0, 0, 0, 0.12);
+      }
+    }
+  }
+
+  &__body {
+    font-size: 13px;
+
+    &__cell {
+      position: relative;
+      outline: 0;
+      cursor: pointer;
+      width: 14.2757%;
+      padding-top: 7.14286%;
+      padding-bottom: 7.14286%;
+
+      &--begin-range:not(&--end-range) {
+        border-radius: 100% 0 0 100%;
+        background-color: #c5cae9;
+      }
+
+      &--end-range:not(&--begin-range) {
+        border-radius: 0 100% 100% 0;
+        background-color: #c5cae9;
+      }
+
+      &--begin-range &,
+      &--end-range:not(&--maybe-end) & {
+        &__content {
+          background-color: #673ab7;
+          color: #fff;
+        }
+      }
+
+      &--semi-selected {
+        background-color: rgba(197, 202, 233, 1);
+      }
+
+      &--today & {
+        &__content {
+          border: solid 1px rgba(0, 0, 0, 0.38);
+        }
+      }
+
+      &--maybe-end & {
+        &__content {
+          border: #3f51b5 1px solid;
+        }
+      }
+
+      &:hover:not(&--begin-range):not(&--end-range):not(&--disabled) &,
+      &--focus:not(&--begin-range):not(&--end-range):not(&--disabled) &,
+      &--active & {
+        &__content {
+          background-color: rgba(0, 0, 0, 0.04);
+        }
+      }
+
+      &--disabled & {
+        &__content {
+          color: rgba(0, 0, 0, 0.25);
+        }
+      }
+
+      &--disabled {
+        cursor: default;
+      }
+
+      &__content {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        width: 90%;
+        height: 90%;
+        line-height: 1;
+        border-radius: 999px;
+      }
+    }
+  }
+}

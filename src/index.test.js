@@ -1,7 +1,7 @@
-import { ExampleComponent } from '.'
+import Daterangepicker from "./Daterangepicker";
 
-describe('ExampleComponent', () => {
-  it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
-  })
-})
+describe("DzDateRangePicker", () => {
+  it("is truthy", () => {
+    expect(Daterangepicker).toBeTruthy();
+  });
+});

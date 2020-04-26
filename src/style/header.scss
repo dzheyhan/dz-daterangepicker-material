@@ -1,0 +1,19 @@
+.dz-calendar-header {
+  padding: 4px 8px 0 8px;
+
+  .header__content {
+    display: flex;
+    justify-content: space-between;
+    margin: 14px 0;
+
+    &__spacer {
+      flex: 1 1 auto;
+    }
+
+    &__previous-button,
+    &__next-button {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
