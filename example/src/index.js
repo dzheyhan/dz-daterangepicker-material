@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import DateRangePicker from "dz-daterangepicker-material";
 
 import "moment/locale/de";
-import "dz-daterangepicker-material/src/style/main.scss";
+import "dz-daterangepicker-material/dist/index.css";
 
 const myStyle = {
     wrap:{

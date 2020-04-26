@@ -10,7 +10,7 @@ import Month from "./calendar/Month";
 import DzPopover from "./DzPopover";
 import DzTextField from "./DzTextField";
 
-import "./style/main.scss";
+import "./style/main.css";
 
 class Daterangepicker extends React.Component<> {
   constructor(props) {
