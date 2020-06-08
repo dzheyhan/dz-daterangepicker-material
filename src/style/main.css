@@ -18,7 +18,8 @@
 .dz-calendar-header .header__content__spacer {
   flex: 1 1 auto;
 }
-.dz-calendar-header .header__content__previous-button, .dz-calendar-header .header__content__next-button {
+.dz-calendar-header .header__content__previous-button,
+.dz-calendar-header .header__content__next-button {
   width: 40px;
   height: 40px;
 }
@@ -61,6 +62,14 @@
   padding-top: 7.14286%;
   padding-bottom: 7.14286%;
 }
+.dz-calendar__table__body__cell--disabled
+  .dz-calendar__table__body__cell__content {
+  color: rgba(0, 0, 0, 0.75);
+  opacity: 0.5;
+}
+.dz-calendar__table__body__cell--disabled {
+  cursor: default;
+}
 .dz-calendar__table__body__cell--begin-range:not(.dz-calendar__table__body__cell--end-range) {
   border-radius: 100% 0 0 100%;
   background-color: #c5cae9;
@@ -69,27 +78,31 @@
   border-radius: 0 100% 100% 0;
   background-color: #c5cae9;
 }
-.dz-calendar__table__body__cell--begin-range .dz-calendar__table__body__cell__content, .dz-calendar__table__body__cell--end-range:not(.dz-calendar__table__body__cell--maybe-end) .dz-calendar__table__body__cell__content {
+.dz-calendar__table__body__cell--begin-range
+  .dz-calendar__table__body__cell__content,
+.dz-calendar__table__body__cell--end-range:not(.dz-calendar__table__body__cell--maybe-end)
+  .dz-calendar__table__body__cell__content {
   background-color: #673ab7;
   color: #fff;
 }
 .dz-calendar__table__body__cell--semi-selected {
   background-color: #c5cae9;
 }
-.dz-calendar__table__body__cell--today .dz-calendar__table__body__cell__content {
+.dz-calendar__table__body__cell--today
+  .dz-calendar__table__body__cell__content {
   border: solid 1px rgba(0, 0, 0, 0.38);
 }
-.dz-calendar__table__body__cell--maybe-end .dz-calendar__table__body__cell__content {
+.dz-calendar__table__body__cell--maybe-end
+  .dz-calendar__table__body__cell__content {
   border: #3f51b5 1px solid;
 }
-.dz-calendar__table__body__cell:hover:not(.dz-calendar__table__body__cell--begin-range):not(.dz-calendar__table__body__cell--end-range):not(.dz-calendar__table__body__cell--disabled) .dz-calendar__table__body__cell__content, .dz-calendar__table__body__cell--focus:not(.dz-calendar__table__body__cell--begin-range):not(.dz-calendar__table__body__cell--end-range):not(.dz-calendar__table__body__cell--disabled) .dz-calendar__table__body__cell__content, .dz-calendar__table__body__cell--active .dz-calendar__table__body__cell__content {
+.dz-calendar__table__body__cell:hover:not(.dz-calendar__table__body__cell--begin-range):not(.dz-calendar__table__body__cell--end-range):not(.dz-calendar__table__body__cell--disabled)
+  .dz-calendar__table__body__cell__content,
+.dz-calendar__table__body__cell--focus:not(.dz-calendar__table__body__cell--begin-range):not(.dz-calendar__table__body__cell--end-range):not(.dz-calendar__table__body__cell--disabled)
+  .dz-calendar__table__body__cell__content,
+.dz-calendar__table__body__cell--active
+  .dz-calendar__table__body__cell__content {
   background-color: rgba(0, 0, 0, 0.04);
-}
-.dz-calendar__table__body__cell--disabled .dz-calendar__table__body__cell__content {
-  color: rgba(0, 0, 0, 0.25);
-}
-.dz-calendar__table__body__cell--disabled {
-  cursor: default;
 }
 .dz-calendar__table__body__cell__content {
   position: absolute;

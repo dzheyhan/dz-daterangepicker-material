@@ -40,6 +40,17 @@
       padding-top: 7.14286%;
       padding-bottom: 7.14286%;
 
+      &--disabled & {
+        &__content {
+          color: rgba(0, 0, 0, 0.75);
+          opacity: 0.5;
+        }
+      }
+
+      &--disabled {
+        cursor: default;
+      }
+
       &--begin-range:not(&--end-range) {
         border-radius: 100% 0 0 100%;
         background-color: #c5cae9;
@@ -80,16 +91,6 @@
         &__content {
           background-color: rgba(0, 0, 0, 0.04);
         }
-      }
-
-      &--disabled & {
-        &__content {
-          color: rgba(0, 0, 0, 0.25);
-        }
-      }
-
-      &--disabled {
-        cursor: default;
       }
 
       &__content {

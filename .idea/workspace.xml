@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4587e831-cc2d-40f9-b8f8-39e7aa2346f1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/example/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Daterangepicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Daterangepicker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DzPopover.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/DzPopover.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DzTextField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/DzTextField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/calendar/Day.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/calendar/Day.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/style/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/style/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/style/main.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/style/main.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/style/table.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/style/table.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +71,7 @@
       <recent name="$PROJECT_DIR$/src/views" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.Example stars">
+  <component name="RunManager" selected="npm.format">
     <configuration name="DateRangePicker" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -83,6 +92,16 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="format" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="format" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="start" />
@@ -94,9 +113,11 @@
       <item itemvalue="Jest.DateRangePicker" />
       <item itemvalue="npm.start" />
       <item itemvalue="npm.Example stars" />
+      <item itemvalue="npm.format" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.format" />
         <item itemvalue="Jest.DateRangePicker" />
       </list>
     </recent_temporary>
@@ -114,7 +135,9 @@
       <workItem from="1587217871862" duration="6738000" />
       <workItem from="1587810939688" duration="17104000" />
       <workItem from="1587831346959" duration="12028000" />
-      <workItem from="1587888211013" duration="22971000" />
+      <workItem from="1587888211013" duration="23543000" />
+      <workItem from="1587978639238" duration="214000" />
+      <workItem from="1591625476208" duration="10410000" />
     </task>
     <servers />
   </component>
@@ -150,33 +173,33 @@
       <screen x="2560" y="0" width="1920" height="1080" />
     </state>
     <state x="3285" y="297" key="FileChooserDialogImpl/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1587935280263" />
-    <state width="1797" height="375" key="GridCell.Tab.0.bottom" timestamp="1587938674337">
-      <screen x="67" y="27" width="2493" height="1413" />
+    <state width="1797" height="440" key="GridCell.Tab.0.bottom" timestamp="1591642386952">
+      <screen x="2560" y="0" width="1920" height="1080" />
     </state>
-    <state width="1797" height="494" key="GridCell.Tab.0.bottom/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1587936841139" />
+    <state width="1797" height="440" key="GridCell.Tab.0.bottom/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1591642386952" />
     <state width="1797" height="375" key="GridCell.Tab.0.bottom/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1587938674337" />
-    <state width="1797" height="375" key="GridCell.Tab.0.center" timestamp="1587938674337">
-      <screen x="67" y="27" width="2493" height="1413" />
+    <state width="1797" height="440" key="GridCell.Tab.0.center" timestamp="1591642386951">
+      <screen x="2560" y="0" width="1920" height="1080" />
     </state>
-    <state width="1797" height="494" key="GridCell.Tab.0.center/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1587936841138" />
+    <state width="1797" height="440" key="GridCell.Tab.0.center/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1591642386951" />
     <state width="1797" height="375" key="GridCell.Tab.0.center/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1587938674337" />
-    <state width="1797" height="375" key="GridCell.Tab.0.left" timestamp="1587938674337">
-      <screen x="67" y="27" width="2493" height="1413" />
+    <state width="1797" height="440" key="GridCell.Tab.0.left" timestamp="1591642386951">
+      <screen x="2560" y="0" width="1920" height="1080" />
     </state>
-    <state width="1797" height="494" key="GridCell.Tab.0.left/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1587936841138" />
+    <state width="1797" height="440" key="GridCell.Tab.0.left/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1591642386951" />
     <state width="1797" height="375" key="GridCell.Tab.0.left/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1587938674337" />
-    <state width="1797" height="375" key="GridCell.Tab.0.right" timestamp="1587938674337">
-      <screen x="67" y="27" width="2493" height="1413" />
+    <state width="1797" height="440" key="GridCell.Tab.0.right" timestamp="1591642386951">
+      <screen x="2560" y="0" width="1920" height="1080" />
     </state>
-    <state width="1797" height="494" key="GridCell.Tab.0.right/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1587936841138" />
+    <state width="1797" height="440" key="GridCell.Tab.0.right/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1591642386951" />
     <state width="1797" height="375" key="GridCell.Tab.0.right/67.27.2493.1413/2560.0.1920.1080@67.27.2493.1413" timestamp="1587938674337" />
     <state x="3012" y="174" width="1082" height="731" key="SettingsEditor" timestamp="1587934810374">
       <screen x="2560" y="0" width="1920" height="1080" />
     </state>
     <state x="3012" y="174" width="1082" height="731" key="SettingsEditor/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1587934810374" />
-    <state x="3084" y="264" width="828" height="640" key="find.popup" timestamp="1587931822145">
+    <state x="3084" y="264" width="835" height="644" key="find.popup" timestamp="1591643000281">
       <screen x="2560" y="0" width="1920" height="1080" />
     </state>
-    <state x="3084" y="264" width="828" height="640" key="find.popup/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1587931822145" />
+    <state x="3084" y="264" width="835" height="644" key="find.popup/67.27.2493.1413/2560.0.1920.1080@2560.0.1920.1080" timestamp="1591643000281" />
   </component>
 </project>

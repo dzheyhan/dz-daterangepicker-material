@@ -5,7 +5,7 @@ import DateRangeIcon from "@material-ui/icons/DateRange";
 import IconButton from "@material-ui/core/IconButton";
 
 function DzTextField(props) {
-  const { start, end, format } = props;
+  const { start, end, format, outerProps } = props;
 
   const getFormattedRangeDate = () => {
     const formattedStart = start ? start.format(format || props) : "";
@@ -35,6 +35,7 @@ function DzTextField(props) {
             </InputAdornment>
           )
         }}
+        {...outerProps}
       />
       {props.children}
     </div>

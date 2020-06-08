@@ -18,6 +18,7 @@ function DzPopover(props) {
         vertical: "top",
         horizontal: "left"
       }}
+      {...props.outerProps}
     >
       {props.children}
     </Popover>

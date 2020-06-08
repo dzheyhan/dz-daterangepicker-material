@@ -22,6 +22,7 @@ class Daterangepicker extends React.Component<> {
 
     this.currentDate = moment().startOf("day");
     this.state = {
+      datePicker: props.datePicker || false,
       currentDate: this.currentDate,
       date: date,
       start: startDate ? moment(startDate) : null,
@@ -68,14 +69,21 @@ class Daterangepicker extends React.Component<> {
   }
 
   setRangeDate(event, date) {
-    const { start, end } = this.state;
+    const { start, end, datePicker } = this.state;
     const startState = {
       start: date,
       focusedDate: date,
       inputType: "mouse"
     };
 
-    if (start === null && end === null) {
+    if (datePicker) {
+      this.setState({
+        start: date,
+        end: date,
+        focusedDate: date,
+        inputType: "mouse"
+      });
+    } else if (start === null && end === null) {
       this.setState(startState);
     } else if (start && end === null && date.isBefore(start)) {
       this.setState(startState);
@@ -399,23 +407,41 @@ class Daterangepicker extends React.Component<> {
       view = this.monthView();
     }
 
+    if (this.props.onlyView) {
+      return <ViewWrapper {...this.props}>{view}</ViewWrapper>;
+    }
+
     return (
       <DzTextField
+        outerProps={this.props.textFieldProps}
         start={start}
         end={end}
         format={textField.format}
         handleClick={this.togglePopover}
       >
         <DzPopover
+          outProps={this.props.popoverProps}
           anchorEl={textField.anchorEl}
           handleClose={() => this.togglePopover(null)}
         >
-          <div className="dz-calendar">{view}</div>
+          <ViewWrapper {...this.props}>{view}</ViewWrapper>
         </DzPopover>
       </DzTextField>
     );
   }
 }
+
+const ViewWrapper = props => (
+  <div
+    className="dz-calendar"
+    style={{
+      width: props.width,
+      height: props.height
+    }}
+  >
+    {props.children}
+  </div>
+);
 
 class DateCompare {
   static isSame(date1: Moment, date2: Moment) {

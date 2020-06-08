@@ -45,9 +45,13 @@ function DateRangePickerView(){
          <DateRangePicker
            startDate={date.startDate}
            endDate={date.endDate}
+           onlyView={false}
+           datePicker={false}
+           textFieldProps={{}}
+           popoverProps={{}}
            onChange={onChange}
-              locale={'de'}
-              startWeek={'monday'} //monday|saturday|sunday
+           locale={'de'}
+           startWeek={'monday'} //monday|saturday|sunday
          />
        </div>
     )

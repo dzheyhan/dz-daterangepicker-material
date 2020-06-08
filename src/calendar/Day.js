@@ -1,6 +1,7 @@
 import React from "react";
 
 function Day(props) {
+  console.log(props.weeks);
   const cellClassName = (day: Object) => {
     const mainClass = "dz-calendar__table__body__cell";
     const className = [mainClass];
@@ -9,17 +10,18 @@ function Day(props) {
       className.push(`${mainClass}--semi-selected`);
     }
 
-    if (!day.isInMonth) {
-      className.push(`${mainClass}--disabled`);
-      return className.join(" ");
-    }
-
     if (day.isStart) {
       className.push(`${mainClass}--begin-range`);
     }
     if (day.isEnd || day.maybeEnd) {
       className.push(`${mainClass}--end-range`);
     }
+
+    if (!day.isInMonth) {
+      className.push(`${mainClass}--disabled`);
+      return className.join(" ");
+    }
+
     if (day.isHovered) {
       className.push(`${mainClass}--hover`);
     }
