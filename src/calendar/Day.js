@@ -1,7 +1,6 @@
 import React from "react";
 
 function Day(props) {
-  console.log(props.weeks);
   const cellClassName = (day: Object) => {
     const mainClass = "dz-calendar__table__body__cell";
     const className = [mainClass];
