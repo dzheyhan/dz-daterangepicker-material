@@ -1,6 +1,6 @@
 # dz-daterangepicker-material
 
-[![NPM](https://img.shields.io/npm/v/test-rearct-lib-4.svg)](https://www.npmjs.com/package/dz-daterangepicker-material) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/dz-daterangepicker-material.svg)](https://www.npmjs.com/package/dz-daterangepicker-material) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Dz Daterangepicker [Material](https://material.io/design/introduction/).
 
@@ -48,6 +48,10 @@ function Example(){
        endDate={date.endDate}
        onChange={onChange}
        startWeek={'monday'}
+       onlyView={false}
+       datePicker={false}
+       textFieldProps={{}}
+       popoverProps={{}}
      />
     )
 }
@@ -60,9 +64,11 @@ function Example(){
 |startDate|initial start Date|null|Moment or Date|
 |endDate|initial end Date|null|Moment or Date|
 |startWeek|The first day of the week|"monday"|"saturday"|"sunday" |String|
-|locale||'en'|String|
+|onlyView|view mode|false|Bool|
+|datePicker||false|Bool|
+|textFieldProps|https://material-ui.com/api/text-field|{}|Obj|
+|popoverProps|https://material-ui.com/api/popover|{}|Obj|
 |TODO|TODO|TODO|TODO|
-
 
 ## Donation :beer: :beer: :beer:
 
