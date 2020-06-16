@@ -16,7 +16,7 @@ function Day(props) {
       className.push(`${mainClass}--end-range`);
     }
 
-    if (!day.isInMonth) {
+    if (!day.isInMonth || day.isDisabled) {
       className.push(`${mainClass}--disabled`);
       return className.join(" ");
     }
@@ -48,7 +48,7 @@ function Day(props) {
       tabIndex: tabIndex(day)
     };
 
-    if (day.isInMonth) {
+    if (day.isInMonth && !day.isDisabled) {
       defaultProps = {
         onMouseUp: e => props.onClickDay(e, day.date),
         onMouseOver: e => props.onDateMouseOver(e, day.date),

@@ -68,6 +68,8 @@ function Example(){
 |datePicker||false|Bool|
 |textFieldProps|https://material-ui.com/api/text-field|{}|Obj|
 |popoverProps|https://material-ui.com/api/popover|{}|Obj|
+|minDate|min date allowed in range|null|Moment or Date|
+|maxDate|max date allowed in range|null|Moment or Date|
 |TODO|TODO|TODO|TODO|
 
 ## Donation :beer: :beer: :beer:

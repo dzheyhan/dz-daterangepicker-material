@@ -17,7 +17,7 @@ class Daterangepicker extends React.Component<> {
     super(props);
     moment.locale(props.locale || "en");
 
-    const { startDate, endDate } = props;
+    const { startDate, endDate, minDate, maxDate } = props;
     const date = moment(endDate || this.currentDate);
 
     this.currentDate = moment().startOf("day");
@@ -25,8 +25,6 @@ class Daterangepicker extends React.Component<> {
       datePicker: props.datePicker || false,
       currentDate: this.currentDate,
       date: date,
-      start: startDate ? moment(startDate) : null,
-      end: endDate ? moment(endDate) : null,
       hoveredDate: null,
       focusedDate: date,
       inputType: null,
@@ -43,6 +41,12 @@ class Daterangepicker extends React.Component<> {
         min: 0,
         max: 11,
         focused: date.month()
+      },
+      day: {
+        start: startDate ? moment(startDate) : null,
+        end: endDate ? moment(endDate) : null,
+        min: minDate ? moment(minDate) : null,
+        max: maxDate ? moment(maxDate) : null
       },
       textField: {
         format: "YYYY.MM.DD",
@@ -69,33 +73,44 @@ class Daterangepicker extends React.Component<> {
   }
 
   setRangeDate(event, date) {
-    const { start, end, datePicker } = this.state;
+    const { day, datePicker } = this.state;
     const startState = {
-      start: date,
+      day: {
+        ...day,
+        start: date
+      },
       focusedDate: date,
       inputType: "mouse"
     };
 
     if (datePicker) {
       this.setState({
-        start: date,
-        end: date,
+        day: {
+          start: date,
+          end: date
+        },
         focusedDate: date,
         inputType: "mouse"
       });
-    } else if (start === null && end === null) {
+    } else if (day.start === null && day.end === null) {
       this.setState(startState);
-    } else if (start && end === null && date.isBefore(start)) {
+    } else if (day.start && day.end === null && date.isBefore(day.start)) {
       this.setState(startState);
-    } else if (start && end === null) {
+    } else if (day.start && day.end === null) {
       this.setState({
-        end: date,
+        day: {
+          ...day,
+          end: date
+        },
         inputType: "mouse"
       });
-    } else if (start && end) {
+    } else if (day.start && day.end) {
       this.setState({
         ...startState,
-        end: null
+        day: {
+          ...startState.day,
+          end: null
+        }
       });
     }
   }
@@ -155,8 +170,7 @@ class Daterangepicker extends React.Component<> {
 
   getMonthWeeks(year: Number, month: Number) {
     const {
-      start,
-      end,
+      day,
       currentDate,
       hoveredDate,
       focusedDate,
@@ -170,19 +184,20 @@ class Daterangepicker extends React.Component<> {
       isCurrentDate: DateCompare.isSame(date, currentDate),
       isInRange: DateCompare.isInRange(
         date,
-        start,
-        end,
+        day.start,
+        day.end,
         hoveredDate,
         focusedDate,
         inputType
       ),
+      isDisabled: !DateCompare.minMaxDate(date, day.min, day.max),
       isInMonth: DateCompare.isInMonth(date, month),
-      isStart: DateCompare.isSame(date, start),
-      isEnd: DateCompare.isSame(date, end),
+      isStart: DateCompare.isSame(date, day.start),
+      isEnd: DateCompare.isSame(date, day.end),
       maybeEnd: DateCompare.maybeEnd(
         date,
-        start,
-        end,
+        day.start,
+        day.end,
         hoveredDate,
         focusedDate,
         inputType
@@ -300,16 +315,20 @@ class Daterangepicker extends React.Component<> {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { start, end } = this.state;
+    const { day } = this.state;
 
-    if (start && end && (start !== prevState.start || end !== prevState.end)) {
+    if (
+      day.start &&
+      day.end &&
+      (day.start !== prevState.day.start || day.end !== prevState.day.end)
+    ) {
       this.togglePopover(null);
-      this.props.onChange(start, end);
+      this.props.onChange(day.start, day.end);
     }
   }
 
   dayView() {
-    const { date, start, end } = this.state;
+    const { date, day } = this.state;
     const weeks = this.getMonthWeeks(date.year(), date.month());
     const weekDays = weekdaysMin(this.state.startWeek);
 
@@ -331,8 +350,8 @@ class Daterangepicker extends React.Component<> {
             onClickDay={this.setRangeDate}
             handleKeyDown={this.handleKeyDown}
             weeks={weeks}
-            start={start}
-            end={end}
+            start={day.start}
+            end={day.end}
           />
         </Content>
       </React.Fragment>
@@ -398,7 +417,7 @@ class Daterangepicker extends React.Component<> {
   }
 
   render() {
-    const { start, end, activeView, textField } = this.state;
+    const { day, activeView, textField } = this.state;
     let view = this.dayView();
 
     if (activeView === "year") {
@@ -414,8 +433,8 @@ class Daterangepicker extends React.Component<> {
     return (
       <DzTextField
         outerProps={this.props.textFieldProps}
-        start={start}
-        end={end}
+        start={day.start}
+        end={day.end}
         format={textField.format}
         handleClick={this.togglePopover}
       >
@@ -450,6 +469,17 @@ class DateCompare {
 
   static isInMonth(targetDate: Moment, month: Number) {
     return targetDate.month() === month;
+  }
+
+  static minMaxDate(targetDate: Moment, start: Moment, end: Moment) {
+    if (start && end) {
+      return targetDate.isBetween(start, end);
+    } else if (start) {
+      return targetDate.isAfter(start);
+    } else if (end) {
+      return targetDate.isBefore(end);
+    }
+    return true;
   }
 
   static maybeEnd(
