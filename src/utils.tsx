@@ -4,7 +4,7 @@ import moment, { Moment } from "moment";
  * @param {number} year The start year
  * @param {number} month The end month
  */
-function getMonthDateRange(year, month) {
+function getMonthDateRange(year:number, month:number) {
   // month in moment is 0 based, so 9 is actually october, subtract 1 to compensate
   // array is 'year', 'month', 'day', etc
   const startDate = moment([year, month]);
@@ -21,7 +21,9 @@ function getMonthDateRange(year, month) {
  * @param {date|Moment} end The end date
  * @param {"monday"|"saturday"|"sunday"} weekStart First Day of the Week
  */
-function getCalendarDateRange(start: Moment, end: Moment, weekStart) {
+type weekStart = "monday"|"saturday"|"sunday"
+
+function getCalendarDateRange(start: Moment, end: Moment, weekStart: weekStart) {
   const weekStartNum = start.day() || 7;
   const weekEndNum = end.day() || 7;
 
@@ -48,7 +50,9 @@ function getCalendarDateRange(start: Moment, end: Moment, weekStart) {
  * @param { "year" | "years" | "y" | "month" | "months" | "M" |/
  * "week" | "weeks" | "w" | "day" | "days" } type The range type. eg: 'days', 'hours' etc
  */
-function getRange(start, end, type) {
+type timeRange = "year" | "years" | "y" | "month" | "months" | "M" | "week" | "weeks" | "w" | "day" | "days"
+
+function getRange(start: Moment, end: Moment, type: timeRange) {
   const diff = end.diff(start, type, true);
 
   const range = [];
@@ -63,12 +67,13 @@ function getRange(start, end, type) {
  * @param {[moment]} list The list of date
  * @param {number} howMany The end date
  */
-function arrayTo2DArray2(list, howMany) {
+function arrayTo2DArray2(list: Object[], howMany:number) {
   let idx = 0;
   const result = [];
 
   while (idx < list.length) {
     if (idx % howMany === 0) result.push([]);
+    // @ts-ignore
     result[result.length - 1].push(list[idx++]);
   }
 
@@ -79,7 +84,9 @@ function arrayTo2DArray2(list, howMany) {
  * @param {number} year The year
  * @param {number} month The month
  */
-function getMonthWeeks(year, month, weekStart) {
+type weekStartCopy = weekStart
+
+function getMonthWeeks(year:number, month:number, weekStart: weekStartCopy) {
   const { start, end } = getMonthDateRange(year, month);
 
   const { startCalendar, endCalendar } = getCalendarDateRange(
@@ -91,13 +98,19 @@ function getMonthWeeks(year, month, weekStart) {
   return getRange(startCalendar, endCalendar, "day");
 }
 
-function weekdaysMin(weekStart) {
+function weekdaysMin(weekStart: weekStart) {
   const weekDays = moment.weekdaysMin(false);
 
   if (weekStart === "monday") {
-    weekDays.push(weekDays.shift());
+    const day = weekDays.shift()
+    if(day){
+      weekDays.push(day);
+    }
   } else if (weekStart === "saturday") {
-    weekDays.unshift(weekDays.pop());
+    const day = weekDays.pop()
+    if(day){
+      weekDays.unshift();
+    }
   }
 
   return weekDays;

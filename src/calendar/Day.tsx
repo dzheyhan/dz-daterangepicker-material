@@ -1,7 +1,17 @@
 import React from "react";
+import {Moment} from "moment";
+import {Day} from "../typings"
 
-function Day(props) {
-  const cellClassName = (day: Object) => {
+interface DayProps {
+    onDateMouseOver: any,
+    onClickDay: any,
+    weeks: Day[][]
+    start?: Moment
+    end?: Moment
+}
+
+const Day = (props: DayProps) =>{
+  const cellClassName = (day: Day) => {
     const mainClass = "dz-calendar__table__body__cell";
     const className = [mainClass];
 
@@ -24,9 +34,6 @@ function Day(props) {
     if (day.isHovered) {
       className.push(`${mainClass}--hover`);
     }
-    if (day.isFocused && !(day.isStart || day.isEnd)) {
-      className.push(`${mainClass}--focus`);
-    }
     if (day.isCurrentDate) {
       className.push(`${mainClass}--today`);
     }
@@ -37,37 +44,30 @@ function Day(props) {
     return className.join(" ");
   };
 
-  const tabIndex = (day: Object) => {
+  const tabIndex = (day: Day) => {
     return day.isCurrentDate ? 1 : 0;
   };
 
-  const getDayProps = (day: Object, index: Number) => {
-    var defaultProps = {
-      key: index,
-      onKeyDown: e => props.handleKeyDown(e, day.date),
-      tabIndex: tabIndex(day)
-    };
-
+  const getDayProps = (day: Day) => {
     if (day.isInMonth && !day.isDisabled) {
-      defaultProps = {
-        onMouseUp: e => props.onClickDay(e, day.date),
-        onMouseOver: e => props.onDateMouseOver(e, day.date),
-        ...defaultProps
+      return  {
+        onMouseUp: () => props.onClickDay(day.date),
+        onMouseOver: () => props.onDateMouseOver(day.date),
       };
     }
-
-    return defaultProps;
+    return {};
   };
 
   return (
     <tbody className="dz-calendar__table__body">
-      {props.weeks.map((week, index) => (
+      {props.weeks.map((week, index:number) => (
         <tr key={index} className="dz-calendar-table-body-week">
-          {week.map((day, index) => (
+          {week.map((day: Day, index:number) => (
             <td
               key={index}
               className={cellClassName(day)}
-              {...getDayProps(day, index)}
+              tabIndex={tabIndex(day)}
+              {...getDayProps(day)}
             >
               <div className="dz-calendar__table__body__cell__content">
                 {day.date.date()}

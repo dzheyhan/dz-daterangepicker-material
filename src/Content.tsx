@@ -1,10 +1,15 @@
 import React from "react";
 
-function Content(props) {
+interface ContentProps {
+    children: React.ReactNode;
+}
+
+function Content(props:ContentProps) {
   return (
-    <div className="dz-calendar-content" {...props}>
+    <div className="dz-calendar-content">
       <table className="dz-calendar__table">{props.children}</table>
     </div>
   );
 }
+
 export default Content;

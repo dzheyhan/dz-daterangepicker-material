@@ -7,7 +7,7 @@
   "repository": "https://github.com/dzheyhan/dz-daterangepicker-material",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
-  "source": "src/index.js",
+  "source": "src/index.tsx",
   "engines": {
     "node": ">=10"
   },
@@ -41,6 +41,8 @@
     "react": "^16.0.0"
   },
   "devDependencies": {
+    "@types/node": "^14.11.2",
+    "@types/react": "^16.9.27",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",

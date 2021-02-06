@@ -1,13 +1,15 @@
 import React from "react";
+import {Month} from "../typings"
 
-function Month(props) {
-  const cellClassName = (month: Object) => {
+interface MonthProps {
+    onClickMonth: any
+    rows: Month[][]
+}
+
+function Month(props: MonthProps) {
+  const cellClassName = (month: Month) => {
     const mainClass = "dz-calendar__table__body__cell";
     const className = [mainClass];
-
-    if (month.isHovered) {
-      className.push(`${mainClass}--hover`);
-    }
 
     if (month.isCurrentMonth) {
       className.push(`${mainClass}--today`);
@@ -20,7 +22,7 @@ function Month(props) {
     return className.join(" ");
   };
 
-  const tabIndex = (month: Object) => {
+  const tabIndex = (month: Month) => {
     return month.isCurrentMonth ? 1 : 0;
   };
 

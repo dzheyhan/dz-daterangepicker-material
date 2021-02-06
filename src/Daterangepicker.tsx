@@ -4,31 +4,30 @@ import { arrayTo2DArray2, getMonthWeeks, weekdaysMin } from "./utils";
 import Header from "./header/Header";
 import TableHeader from "./header/TableHeader";
 import Content from "./Content";
-import Day from "./calendar/Day";
 import Year from "./calendar/Year";
 import Month from "./calendar/Month";
-import DzPopover from "./DzPopover";
-import DzTextField from "./DzTextField";
+import Day from "./calendar/Day";
+import { DaterangepickerProps, DaterangepickerState, Views } from "./typings";
 
 import "./style/main.css";
 
-class Daterangepicker extends React.Component<> {
-  constructor(props) {
+class Daterangepicker extends React.Component<DaterangepickerProps, DaterangepickerState> {
+  private readonly currentDate: moment.Moment;
+
+  constructor(props: DaterangepickerProps) {
     super(props);
     moment.locale(props.locale || "en");
 
     const { startDate, endDate, minDate, maxDate } = props;
-    const date = moment(endDate || this.currentDate);
 
     this.currentDate = moment().startOf("day");
+    const date = moment(endDate || this.currentDate);
+
     this.state = {
       datePicker: props.datePicker || false,
       currentDate: this.currentDate,
       date: date,
-      hoveredDate: null,
-      focusedDate: date,
-      inputType: null,
-      activeView: "day",
+      activeView: Views.day,
       startWeek: props.startWeek || "monday",
       year: {
         min: 1990,
@@ -43,16 +42,13 @@ class Daterangepicker extends React.Component<> {
         focused: date.month()
       },
       day: {
-        start: startDate ? moment(startDate) : null,
-        end: endDate ? moment(endDate) : null,
-        min: minDate ? moment(minDate) : null,
-        max: maxDate ? moment(maxDate) : null
-      },
-      textField: {
-        format: "YYYY.MM.DD",
-        anchorEl: null
+        start: startDate && moment(startDate) ,
+        end: endDate && moment(endDate),
+        min: minDate && moment(minDate),
+        max: maxDate && moment(maxDate),
+        hoveredDate: this.currentDate,
       }
-    };
+    }
 
     this.goToPreviousMonths = this.goToPreviousMonths.bind(this);
     this.goToNextMonths = this.goToNextMonths.bind(this);
@@ -63,24 +59,21 @@ class Daterangepicker extends React.Component<> {
     this.changeView = this.changeView.bind(this);
     this.setYear = this.setYear.bind(this);
     this.setMonth = this.setMonth.bind(this);
-    this.togglePopover = this.togglePopover.bind(this);
   }
 
-  changeView(newView) {
+  changeView(newView: Views) {
     this.setState({
       activeView: newView
     });
   }
 
-  setRangeDate(event, date) {
+  setRangeDate(date: Moment) {
     const { day, datePicker } = this.state;
     const startState = {
       day: {
         ...day,
         start: date
-      },
-      focusedDate: date,
-      inputType: "mouse"
+      }
     };
 
     if (datePicker) {
@@ -88,107 +81,61 @@ class Daterangepicker extends React.Component<> {
         day: {
           start: date,
           end: date
-        },
-        focusedDate: date,
-        inputType: "mouse"
+        }
       });
-    } else if (day.start === null && day.end === null) {
+    } else if (day.start === undefined && day.end === undefined) {
       this.setState(startState);
-    } else if (day.start && day.end === null && date.isBefore(day.start)) {
+    } else if (day.start && day.end === undefined && date.isBefore(day.start)) {
       this.setState(startState);
-    } else if (day.start && day.end === null) {
+    } else if (day.start && day.end === undefined) {
       this.setState({
         day: {
           ...day,
           end: date
         },
-        inputType: "mouse"
       });
     } else if (day.start && day.end) {
       this.setState({
         ...startState,
         day: {
           ...startState.day,
-          end: null
+          end: undefined
         }
       });
     }
   }
 
-  onDateFocus(event, date) {
-    const newDate = moment(this.state.focusedDate);
+  onDateMouseOver(date: Moment) {
+    const { day } = this.state;
 
-    switch (event.key) {
-      case "ArrowUp":
-        newDate.subtract(7, "d");
-        break;
-      case "ArrowDown":
-        newDate.add(7, "d");
-        break;
-      case "ArrowLeft":
-        newDate.subtract(1, "d");
-        break;
-      case "ArrowRight":
-        newDate.add(1, "d");
-        break;
-      default:
-        return false;
-    }
-
-    this.setState(
-      {
-        focusedDate: newDate,
-        inputType: "keyboard"
-      },
-      () => {
-        if (newDate.month() > this.state.date.month()) {
-          this.goToNextMonths();
-        } else if (newDate.month() < this.state.date.month()) {
-          this.goToPreviousMonths();
-        }
-      }
-    );
-  }
-
-  onDateMouseOver(event, date) {
-    const isSame = date.isSame(this.state.hoveredDate, "day");
+    const isSame = DateCompare.isSame(date, day.hoveredDate);
     if (isSame) return;
 
     this.setState({
-      hoveredDate: date,
-      inputType: "mouse"
+      ...this.state,
+      day: {
+        ...day,
+        hoveredDate: date,
+      }
     });
   }
 
-  handleKeyDown = (event, date) => {
-    if (event.key === "Enter") {
-      this.setRangeDate(event, this.state.focusedDate);
-    } else {
-      this.onDateFocus(event, date);
-    }
-  };
-
-  getMonthWeeks(year: Number, month: Number) {
+  getMonthWeeks(year: number, month: number) {
     const {
       day,
       currentDate,
-      hoveredDate,
-      focusedDate,
-      inputType
     } = this.state;
 
     let weeks = getMonthWeeks(year, month, this.state.startWeek);
 
-    weeks = weeks.map((date, index, arr) => ({
+    let weeksDays = weeks.map((date:Moment) => ({
       date: date,
       isCurrentDate: DateCompare.isSame(date, currentDate),
       isInRange: DateCompare.isInRange(
         date,
         day.start,
         day.end,
-        hoveredDate,
-        focusedDate,
-        inputType
+        day.hoveredDate
       ),
       isDisabled: !DateCompare.minMaxDate(date, day.min, day.max),
       isInMonth: DateCompare.isInMonth(date, month),
@@ -198,15 +145,12 @@ class Daterangepicker extends React.Component<> {
         date,
         day.start,
         day.end,
-        hoveredDate,
-        focusedDate,
-        inputType
+        day.hoveredDate
       ),
-      isHovered: DateCompare.isSame(date, hoveredDate),
-      isFocused: DateCompare.isSame(date, focusedDate)
+      isHovered: DateCompare.isSame(date, day.hoveredDate),
     }));
 
-    return arrayTo2DArray2(weeks, 7);
+    return arrayTo2DArray2(weeksDays, 7);
   }
 
   getYears() {
@@ -230,7 +174,7 @@ class Daterangepicker extends React.Component<> {
       years.push(start);
     }
 
-    years = years.map((year, index, arr) => ({
+    years = years.map((year) => ({
       year: year,
       selected: year === targetYear,
       isCurrentYear: year === currentYear,
@@ -246,7 +190,7 @@ class Daterangepicker extends React.Component<> {
     const targetMonth = date.month();
     const { focused } = this.state.month;
 
-    const months = moment.monthsShort().map((month, monthNum, arr) => ({
+    const months = moment.monthsShort().map((month:string, monthNum:number) => ({
       monthNum: monthNum,
       monthName: month,
       selected: monthNum === targetMonth,
@@ -258,28 +202,28 @@ class Daterangepicker extends React.Component<> {
     return arrayTo2DArray2(months, 4);
   }
 
-  setYear(e, year) {
+  setYear(_e:any, year:number) {
     const newDate = this.state.date.year(year);
     this.setState(
       {
         date: newDate
       },
-      () => this.changeView("month")
+      () => this.changeView(Views.month)
     );
   }
 
-  setMonth(e, month) {
+  setMonth(_e:any, month:number) {
     const newDate = this.state.date.month(month);
 
     this.setState(
       {
         date: newDate
       },
-      () => this.changeView("day")
+      () => this.changeView(Views.day)
     );
   }
 
-  changeYearPage(e, nextPage: true) {
+  changeYearPage(nextPage:boolean=true) {
     const { year } = this.state;
 
     this.setState({
@@ -304,25 +248,20 @@ class Daterangepicker extends React.Component<> {
 
   goToPreviousYear() {
     this.setState({
-      date: this.state.date.subtract(1, "Y")
+      date: this.state.date.subtract(1, "y")
     });
   }
 
   goToNextYear() {
     this.setState({
-      date: this.state.date.add(1, "Y")
+      date: this.state.date.add(1, "y")
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_prevProps:any, prevState:any) {
     const { day } = this.state;
 
-    if (
-      day.start &&
-      day.end &&
-      (day.start !== prevState.day.start || day.end !== prevState.day.end)
-    ) {
-      this.togglePopover(null);
+    if (day.start && day.end && (day.start !== prevState.day.start || day.end !== prevState.day.end)) {
       this.props.onChange(day.start, day.end);
     }
   }
@@ -332,7 +271,7 @@ class Daterangepicker extends React.Component<> {
     const weeks = this.getMonthWeeks(date.year(), date.month());
     const weekDays = weekdaysMin(this.state.startWeek);
 
-    const changeView = () => this.changeView("year");
+    const changeView = () => this.changeView(Views.year);
 
     return (
       <React.Fragment>
@@ -348,7 +287,6 @@ class Daterangepicker extends React.Component<> {
           <Day
             onDateMouseOver={this.onDateMouseOver}
             onClickDay={this.setRangeDate}
-            handleKeyDown={this.handleKeyDown}
             weeks={weeks}
             start={day.start}
             end={day.end}
@@ -363,10 +301,10 @@ class Daterangepicker extends React.Component<> {
     const btnText = `${date.format("YYYY")}`;
     const rows = this.getYears();
 
-    const changeView = () => this.changeView("day");
+    const changeView = () => this.changeView(Views.day);
 
-    const nextPage = e => this.changeYearPage(e, true);
-    const previousPage = e => this.changeYearPage(e, false);
+    const nextPage = () => this.changeYearPage(true);
+    const previousPage = () => this.changeYearPage(false);
 
     return (
       <React.Fragment>
@@ -378,7 +316,7 @@ class Daterangepicker extends React.Component<> {
           open
         />
         <Content>
-          <TableHeader />
+          <TableHeader/>
           <Year onClickYear={this.setYear} rows={rows} />
         </Content>
       </React.Fragment>
@@ -406,72 +344,39 @@ class Daterangepicker extends React.Component<> {
     );
   }
 
-  togglePopover(event) {
-    this.setState({
-      ...this.state,
-      textField: {
-        ...this.state.textField,
-        anchorEl: event ? event.currentTarget : null
-      }
-    });
-  }
-
   render() {
-    const { day, activeView, textField } = this.state;
+    const {activeView} = this.state;
     let view = this.dayView();
 
-    if (activeView === "year") {
+    if (activeView === Views.year) {
       view = this.yearView();
-    } else if (activeView === "month") {
+    } else if (activeView === Views.month) {
       view = this.monthView();
     }
 
-    if (this.props.onlyView) {
-      return <ViewWrapper {...this.props}>{view}</ViewWrapper>;
-    }
-
     return (
-      <DzTextField
-        outerProps={this.props.textFieldProps}
-        start={day.start}
-        end={day.end}
-        format={textField.format}
-        handleClick={this.togglePopover}
-      >
-        <DzPopover
-          outProps={this.props.popoverProps}
-          anchorEl={textField.anchorEl}
-          handleClose={() => this.togglePopover(null)}
-        >
-          <ViewWrapper {...this.props}>{view}</ViewWrapper>
-        </DzPopover>
-      </DzTextField>
-    );
+        <div className="dz-calendar">
+          {view}
+        </div>
+    )
+
   }
 }
 
-const ViewWrapper = props => (
-  <div
-    className="dz-calendar"
-    style={{
-      width: props.width,
-      height: props.height
-    }}
-  >
-    {props.children}
-  </div>
-);
-
 class DateCompare {
-  static isSame(date1: Moment, date2: Moment) {
-    return date1.isSame(date2, "day");
+  static isSame(
+    date1: Moment|null|undefined,
+    date2: Moment|null|undefined
+  ): boolean {
+    if(date1 && date2) return date1.isSame(date2, "day");
+    return false
   }
 
-  static isInMonth(targetDate: Moment, month: Number) {
+  static isInMonth(targetDate: Moment, month: Number):boolean {
     return targetDate.month() === month;
   }
 
-  static minMaxDate(targetDate: Moment, start: Moment, end: Moment) {
+  static minMaxDate(targetDate: Moment, start?: Moment, end?: Moment) {
     if (start && end) {
       return targetDate.isBetween(start, end);
     } else if (start) {
@@ -484,33 +389,21 @@ class DateCompare {
 
   static maybeEnd(
     targetDate: Moment,
-    start: Moment,
-    end: Moment,
-    hoveredDate: Moment,
-    focusedDate: Moment,
-    inputType
-  ) {
+    start?: Moment,
+    end?: Moment,
+    hoveredDate?: Moment,
+  ):boolean {
     if (!start || (start && end)) return false;
 
-    if (inputType === "mouse") {
-      return (
-        this.isSame(targetDate, hoveredDate) &&
-        !start.isAfter(hoveredDate, "day")
-      );
-    } else if (inputType === "keyboard") {
-      return (
-        this.isSame(targetDate, focusedDate) &&
-        !start.isAfter(focusedDate, "day")
-      );
-    }
+    return this.isSame(targetDate, hoveredDate) && !start.isAfter(hoveredDate, "day")
   }
 
   static isBetweenMaybeEnd(
     targetDate: Moment,
-    start: Moment,
-    end: Moment,
-    maybeEnd: Moment
-  ) {
+    start?: Moment,
+    end?: Moment,
+    maybeEnd?: Moment
+  ):boolean | undefined {
     const isSameOrBeforeEnd = targetDate.isSameOrBefore(maybeEnd, "day");
     const isSameOrAfterStart = targetDate.isSameOrAfter(start, "day");
 
@@ -519,24 +412,15 @@ class DateCompare {
 
   static isInRange(
     targetDate: Moment,
-    start: Moment,
-    end: Moment,
-    hoveredDate: Moment,
-    focusedDate: Moment,
-    inputType
-  ) {
-    const isBetweenStartEnd = targetDate.isBetween(start, end, "day");
-    if (isBetweenStartEnd) {
-      return true;
+    start?: Moment,
+    end?: Moment,
+    hoveredDate?: Moment,
+  ): boolean | undefined {
+    if (start && end) {
+      return targetDate.isBetween(start, end, "day")
     }
 
-    if (inputType === "mouse") {
-      return this.isBetweenMaybeEnd(targetDate, start, end, hoveredDate);
-    } else if (inputType === "keyboard") {
-      return this.isBetweenMaybeEnd(targetDate, start, end, focusedDate);
-    }
-
-    return false;
+    return this.isBetweenMaybeEnd(targetDate, start, end, hoveredDate);
   }
 }
 

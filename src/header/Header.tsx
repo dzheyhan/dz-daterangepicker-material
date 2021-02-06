@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
@@ -7,7 +6,16 @@ import Button from "@material-ui/core/Button";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 
-function Header(props) {
+
+interface HeaderProps {
+    goToPrevious:any
+    goToNext:any
+    changeView:any
+    btnText:string
+    open:boolean
+}
+
+function Header(props:HeaderProps) {
   const btnIcon = () =>
     props.open ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />;
 
@@ -40,14 +48,6 @@ function Header(props) {
 // Specifies the default values for props:
 Header.defaultProps = {
   open: false
-};
-
-Header.propTypes = {
-  goToPrevious: PropTypes.func.isRequired,
-  goToNext: PropTypes.func.isRequired,
-  changeView: PropTypes.func.isRequired,
-  btnText: PropTypes.string.isRequired,
-  open: PropTypes.bool
 };
 
 export default Header;

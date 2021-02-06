@@ -1,13 +1,15 @@
 import React from "react";
+import {Year} from "../typings"
 
-function Year(props) {
-  const cellClassName = (year: Object) => {
+interface YearProps {
+    onClickYear: any
+    rows: Year[][]
+}
+
+function Year(props:YearProps) {
+  const cellClassName = (year: Year) => {
     const mainClass = "dz-calendar__table__body__cell";
     const className = [mainClass];
-
-    if (year.isHovered) {
-      className.push(`${mainClass}--hover`);
-    }
 
     if (year.isCurrentYear) {
       className.push(`${mainClass}--today`);
@@ -20,7 +22,7 @@ function Year(props) {
     return className.join(" ");
   };
 
-  const tabIndex = (year: Object) => {
+  const tabIndex = (year: Year) => {
     return year.isCurrentYear ? 1 : 0;
   };
 
