@@ -70,8 +70,6 @@
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.28",
     "node-sass": "^4.13.1",
-    "prop-types": "^15.7.2",
-    "react-is": "^16.13.1",
     "typescript": "^3.8.3"
   },
   "files": [

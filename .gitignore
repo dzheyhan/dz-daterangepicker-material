@@ -30,6 +30,7 @@ yarn-error.log*
 .idea/dictionaries
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
+package-lock.json
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids

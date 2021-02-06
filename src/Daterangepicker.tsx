@@ -1,6 +1,6 @@
 import React from "react";
 import moment, { Moment } from "moment";
-import { arrayTo2DArray2, getMonthWeeks, weekdaysMin } from "./utils";
+import { arrayTo2DArray2, getMonthWeeks, weekdaysMin, DateCompare } from "./utils";
 import Header from "./header/Header";
 import TableHeader from "./header/TableHeader";
 import Content from "./Content";
@@ -360,67 +360,6 @@ class Daterangepicker extends React.Component<DaterangepickerProps, Daterangepic
         </div>
     )
 
-  }
-}
-
-class DateCompare {
-  static isSame(
-    date1: Moment|null|undefined,
-    date2: Moment|null|undefined
-  ): boolean {
-    if(date1 && date2) return date1.isSame(date2, "day");
-    return false
-  }
-
-  static isInMonth(targetDate: Moment, month: Number):boolean {
-    return targetDate.month() === month;
-  }
-
-  static minMaxDate(targetDate: Moment, start?: Moment, end?: Moment) {
-    if (start && end) {
-      return targetDate.isBetween(start, end);
-    } else if (start) {
-      return targetDate.isAfter(start);
-    } else if (end) {
-      return targetDate.isBefore(end);
-    }
-    return true;
-  }
-
-  static maybeEnd(
-    targetDate: Moment,
-    start?: Moment,
-    end?: Moment,
-    hoveredDate?: Moment,
-  ):boolean {
-    if (!start || (start && end)) return false;
-
-    return this.isSame(targetDate, hoveredDate) && !start.isAfter(hoveredDate, "day")
-  }
-
-  static isBetweenMaybeEnd(
-    targetDate: Moment,
-    start?: Moment,
-    end?: Moment,
-    maybeEnd?: Moment
-  ):boolean | undefined {
-    const isSameOrBeforeEnd = targetDate.isSameOrBefore(maybeEnd, "day");
-    const isSameOrAfterStart = targetDate.isSameOrAfter(start, "day");
-
-    return start && !end && isSameOrAfterStart && isSameOrBeforeEnd;
-  }
-
-  static isInRange(
-    targetDate: Moment,
-    start?: Moment,
-    end?: Moment,
-    hoveredDate?: Moment,
-  ): boolean | undefined {
-    if (start && end) {
-      return targetDate.isBetween(start, end, "day")
-    }
-
-    return this.isBetweenMaybeEnd(targetDate, start, end, hoveredDate);
   }
 }
 
