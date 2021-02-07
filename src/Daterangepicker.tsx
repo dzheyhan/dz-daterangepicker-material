@@ -355,7 +355,7 @@ class Daterangepicker extends React.Component<DaterangepickerProps, Daterangepic
     }
 
     return (
-        <div className="dz-calendar">
+        <div className="dz-calendar" {...this.props.wrapperProps}>
           {view}
         </div>
     )

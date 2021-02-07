@@ -1,4 +1,5 @@
 import moment, {Moment} from "moment";
+import React from "react";
 
 type StartWeekType = "monday" | "saturday" | "sunday"
 
@@ -17,6 +18,7 @@ interface DaterangepickerProps {
     locale: string
     minDate?: Moment | Date
     maxDate?: Moment | Date
+    wrapperProps: React.HTMLAttributes<HTMLDivElement>
 }
 
 interface DaterangepickerState {
