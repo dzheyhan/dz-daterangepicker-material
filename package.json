@@ -5,7 +5,7 @@
   "author": "Dzheyhan Ahmedov",
   "license": "MIT",
   "repository": "https://github.com/dzheyhan/dz-daterangepicker-material",
-  "main": "dist/index.d.ts",
+  "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",
   "types": "src/typings.tsx",
